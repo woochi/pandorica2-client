@@ -1,0 +1,14 @@
+.grid {
+
+}
+
+.cell {
+  margin: 16px;
+}
+
+@media (min-width: 600px) {
+  .cell {
+    width: 312px;
+    float: left;
+  }
+}

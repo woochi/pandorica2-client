@@ -1,0 +1,8 @@
+.questCard {
+  position: relative;
+  max-height: 480px;
+}
+
+.labels {
+  text-align: center;
+}

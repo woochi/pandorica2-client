@@ -1,0 +1,67 @@
+.text-white {
+  color: #FFF;
+}
+
+.supertitle {
+  composes: text-white;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.subtitle {
+  composes: text-white;
+  font-size: 14px;
+  line-height: 24px;
+  font-style: italic;
+}
+
+.title {
+  composes: text-white;
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.titleGroup {
+  margin: 32px;
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.logo {
+  width: 32px;
+  margin: -16px auto 16px auto;
+}
+
+@media only screen and (min-device-width : 768px) {
+  .title {
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: 2px;
+  }
+
+  .supertitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+

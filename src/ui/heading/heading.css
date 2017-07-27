@@ -1,0 +1,19 @@
+.heading {
+  color: white;
+  font-weight: 500;
+}
+
+.heading1 {
+  composes: heading;
+  font-size: 20px;
+}
+
+.heading {
+  composes: heading;
+  font-size: 18px;
+}
+
+.heading3 {
+  composes: heading;
+  font-size: 16px;
+}

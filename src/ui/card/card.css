@@ -1,0 +1,24 @@
+.card {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  background: #3B4466;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.body {
+  position: relative;
+  padding: 24px;
+}
+
+.footer {
+  border-top: 1px solid #2C3651;
+}
+
+.image {
+  background: white;
+  height: 224px;
+}
+
+.ripple {
+  border-radius: 50%;
+}

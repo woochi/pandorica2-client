@@ -1,0 +1,45 @@
+.button {
+  min-width: 200px;
+  font: 500 14px/20px 'TT Norms', sans-serif;
+  appearance: none;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.normalWidth {
+  composes: button;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.default {
+  composes: button;
+}
+
+.primary {
+  composes: button;
+  background: #50E3C2;
+  color: #FFF;
+  box-shadow: 0 0 10px #3EB096;
+  animation: pulse 1s infinite alternate;
+}
+
+.link {
+  composes: button;
+  color: #50E3C2;
+  background: none;
+}
+
+@keyframes pulse {
+  from {box-shadow: 0 5px 20px -10px #3EB096;}
+  to {box-shadow: 0 5px 20px 0px #3EB096}
+}

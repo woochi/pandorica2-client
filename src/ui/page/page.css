@@ -1,0 +1,30 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.navBar {
+  flex: 0 0 auto;
+}
+
+.navBarItem {
+  padding: 16px;
+}
+
+.navBarTitle {
+  composes: navBarItem;
+}
+
+.footer {
+  flex: 0 0 auto;
+  padding: 16px;
+}
