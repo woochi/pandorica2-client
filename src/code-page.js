@@ -22,7 +22,10 @@ class CodePage extends React.PureComponent {
             <Paragraph>
               Insert wil codes you found in Messukeskus and in different events here to gain points for your kingdom.
             </Paragraph>
-            <form onSubmit={this.onSubmit}>
+            <form
+              onSubmit={this.onSubmit}
+              action="/codes"
+              method="POST">
               <fieldset>
                 <TextField
                   hintText="XXXXX"

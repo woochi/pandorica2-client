@@ -71,7 +71,10 @@ class QuestPage extends React.PureComponent {
             </Paragraph>
           }
           {!completed &&
-            <form onSubmit={this.onSubmit}>
+            <form
+              onSubmit={this.onSubmit}
+              action={`/quests/${this.props.match.params.questId}`}
+              method="POST">
               <TextField
                 hintText="XXXXX"
                 value={this.state.code}
