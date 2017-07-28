@@ -64,7 +64,6 @@ class SignupPage extends React.PureComponent {
                 <TextField
                   floatingLabelText="Email address"
                   hintText="E.g. john.doe@ropecon.fi"
-                  autoFocus
                   fullWidth
                   floatingLabelFixed
                   value={email}

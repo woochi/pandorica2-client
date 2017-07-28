@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {authenticate, isAuthenticated} from './lib/auth';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import {Page, PageBody, PageFooter, TextField, Button, Heading} from './ui';
+import {Page, PageBody, PageFooter, TextField, Button, Heading, Paragraph} from './ui';
 import Snackbar from 'material-ui/Snackbar';
 
 class LoginPage extends React.PureComponent {
@@ -30,10 +30,13 @@ class LoginPage extends React.PureComponent {
           <form onSubmit={this.onSubmit}>
             <fieldset>
               <Heading>Log in</Heading>
+              <Paragraph>
+                The fight is not yet over!
+                Join your allies against The Enemy once more.
+              </Paragraph>
               <TextField
                 floatingLabelText="Email address"
                 hintText="E.g. john.doe@ropecon.fi"
-                autoFocus
                 fullWidth
                 floatingLabelFixed
                 value={email}
