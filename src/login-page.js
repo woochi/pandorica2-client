@@ -35,7 +35,8 @@ class LoginPage extends React.PureComponent {
                 fullWidth
                 floatingLabelFixed
                 value={email}
-                onChange={this.onChangeEmail}/>
+                onChange={this.onChangeEmail}
+                type="email"/>
               <TextField
                 floatingLabelText="Password"
                 type="password"
