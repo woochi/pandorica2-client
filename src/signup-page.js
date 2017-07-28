@@ -57,7 +57,10 @@ class SignupPage extends React.PureComponent {
             <form onSubmit={this.onSubmit} ref={this.updateForm}>
               <fieldset>
                 <Heading>Sign up</Heading>
-                <Paragraph>You are joining {faction.name}.</Paragraph>
+                <Paragraph>
+                  You are joining {faction.name}.
+                  Collect codes from quests, events and secret locations to gain points and strengthen your kingdom against the dark forces of The Enemy!
+                </Paragraph>
                 <TextField
                   floatingLabelText="Email address"
                   hintText="E.g. john.doe@ropecon.fi"

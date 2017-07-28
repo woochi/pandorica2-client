@@ -21,6 +21,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import CodePage from './code-page';
 import StatsPage from './stats-page';
+import HelpPage from './help-page';
 
 const muiTheme = getMuiTheme({
   ...darkBaseTheme,
@@ -51,6 +52,10 @@ class App extends Component {
               exact
               path="/stats"
               component={StatsPage}/>
+            <Route
+              exact
+              path="/help"
+              component={HelpPage}/>
           </div>
         </Router>
       </MuiThemeProvider>

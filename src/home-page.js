@@ -28,6 +28,8 @@ class HomePage extends React.PureComponent {
             <Link to="/signup">
               <Button bsStyle="primary" fullWidth>Join the Fight!</Button>
             </Link>
+            <div style={{margin: '16px 0'}}>or</div>
+            <Link to="/help">Read more</Link>
           </div>
         </PageBody>
         <PageFooter>

@@ -25,7 +25,9 @@ class FactionStats extends React.PureComponent {
               <img src={Crown} width="100%"/>
             </div>
           }
-          <Heading>{name}</Heading>
+          <div className={css.factionName}>
+            <Heading>{name}</Heading>
+          </div>
           <PointsDisplay points={points}/>
         </Center>
       </div>

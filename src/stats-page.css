@@ -21,6 +21,10 @@
   margin: 16px;
 }
 
+.factionName {
+  margin: 8px 0;
+}
+
 @media only screen and (min-width : 768px) {
   .factionsContainer {
     width: 100vw;
