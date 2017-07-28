@@ -67,24 +67,17 @@ class StatsPage extends React.PureComponent {
     if (loading) {
       return null;
     } else {
-      const enemyFaction = factions.find(faction =>
-        faction.name === 'The Enemy'
-      );
-      const playerFactions = factions.filter(faction =>
-        faction !== enemyFaction
-      ).sort((a, b) => alphabeticSort(a.name, b.name));
-      const sortedFactions = [enemyFaction].concat(playerFactions);
-      const leader = sortedFactions.sort((a, b) => a.points < b.points)[0];
+      const sortedFactions = factions.sort((a, b) => a.points < b.points);
 
       return (
         <div className={css.factionsContainer}>
           <div className={css.factionList}>
-            {sortedFactions.map(faction => (
+            {sortedFactions.map((faction, i) => (
               <div className={css.factionItem} key={faction.id}>
                 <FactionStats
                   faction={faction}
                   key={faction.id}
-                  isLeader={faction === leader}/>
+                  isLeader={i === 0}/>
               </div>
             ))}
           </div>
