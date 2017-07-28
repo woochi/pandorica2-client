@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {authenticate, isAuthenticated, signUp} from './lib/auth';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import {Page, PageBody, PageFooter, NavBar, Button, TextField, Paragraph} from './ui';
+import {Page, PageBody, PageFooter, NavBar, Button, TextField, Paragraph, Heading} from './ui';
 import {compose, mapProps} from 'recompose';
 import {refetch, post} from './lib/api';
 import css from './signup-page.css';
@@ -54,7 +54,8 @@ class SignupPage extends React.PureComponent {
           <PageBody>
             <form onSubmit={this.onSubmit} ref={this.updateForm}>
               <fieldset>
-                <Paragraph>You are joining {faction.name}</Paragraph>
+                <Heading>Sign up</Heading>
+                <Paragraph>You are joining {faction.name}.</Paragraph>
                 <TextField
                   floatingLabelText="Email address"
                   hintText="E.g. john.doe@ropecon.fi"

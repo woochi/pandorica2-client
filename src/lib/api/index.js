@@ -2,11 +2,14 @@ import {connect} from 'react-refetch';
 import urlJoin from 'url-join'
 import {getAuthHeaders} from '../auth';
 
-const apiUrl = 'http://localhost:3001';
+const apiUrl = window.location.host.includes('ropecon')
+  ? 'https://api.ropecon.fi'
+  : 'http://localhost:3001';
 
 export function request(url, customOptions) {
   const {headers, ...otherOptions} = customOptions;
   const options = {
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
       ...getAuthHeaders(),
@@ -48,6 +51,7 @@ export const refetch = connect.defaults({
 
     const options = {
       ...defaultOptions,
+      mode: 'cors',
       headers: {
         Accept: 'application/json',
         ...headers,

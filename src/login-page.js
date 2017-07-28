@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {authenticate, isAuthenticated} from './lib/auth';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
-import {Page, PageBody, PageFooter, TextField, Button} from './ui';
+import {Page, PageBody, PageFooter, TextField, Button, Heading} from './ui';
 
 class LoginPage extends React.PureComponent {
   constructor(props) {
@@ -27,6 +27,7 @@ class LoginPage extends React.PureComponent {
         <PageBody>
           <form onSubmit={this.onSubmit}>
             <fieldset>
+              <Heading>Log in</Heading>
               <TextField
                 floatingLabelText="Email address"
                 hintText="E.g. john.doe@ropecon.fi"

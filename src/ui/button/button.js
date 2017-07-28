@@ -10,16 +10,17 @@ class Button extends React.PureComponent {
   };
 
   render() {
-    const widthClass = this.props.fullWidth ? css.fullWidth : css.normalWidth;
-    const className = classnames(
+    const {fullWidth, bsStyle, className, ...otherProps} = this.props;
+    const widthClass = fullWidth ? css.fullWidth : css.normalWidth;
+    const buttonClassName = classnames(
       widthClass,
-      css[this.props.bsStyle],
-      this.props.className
+      css[bsStyle],
+      className
     );
 
     return (
       <div>
-        <button {...this.props} className={className}/>
+        <button {...otherProps} className={buttonClassName}/>
         <div className={css.ripple}/>
       </div>
     );
