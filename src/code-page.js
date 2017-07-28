@@ -76,6 +76,7 @@ class CodePage extends React.PureComponent {
     window.alert('SUBMIT' + this.state.value);
     event.preventDefault();
     post('/codes', {value: this.state.value}).then(() => {
+      window.alert('SUCECSS');
       this.setState({success: true});
     }).catch((response) => {
       response.json().then(({errors = []}) => {
