@@ -65,8 +65,6 @@ class QuestPage extends React.PureComponent {
               value={this.state.code}
               onChange={this.onChangeCode}/>
           </form>
-          {code}
-          {submitting && 'SUBMITTING'}
         </Center>
       );
     }
