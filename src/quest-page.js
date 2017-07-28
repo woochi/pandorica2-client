@@ -16,6 +16,9 @@ import {refetch, post} from './lib/api';
 import {compose, mapProps} from 'recompose';
 import {withRouter} from 'react-router';
 import {Motion, spring} from 'react-motion';
+import CheckIcon from 'react-icons/lib/md/check';
+import css from './quest-page.css';
+import SubmitInput from './submit-input';
 
 class QuestPage extends React.PureComponent {
   constructor(props) {
@@ -39,16 +42,18 @@ class QuestPage extends React.PureComponent {
 
   renderContent = () => {
     const {quest, submitting, loading} = this.props;
-    const {name, description, points, code} = quest;
+    const {name, description, points, completed} = quest;
 
     if (this.state.success) {
       return (
         <Center>
+          <Heading>Quest Completed!</Heading>
+          <Paragraph>You have been an aid to the kingdom's cause.</Paragraph>
           <Motion
             defaultStyle={{points: 0}}
             style={{points: spring(points, {stiffness: 40, damping: 30})}}
             onRest={this.onCounterComplete}>
-            {value => <div>{Math.ceil(value.points)}</div>}
+            {value => <div className={css.counter}>{Math.ceil(value.points)}</div>}
           </Motion>
         </Center>
       );
@@ -59,12 +64,21 @@ class QuestPage extends React.PureComponent {
           <Heading>{name}</Heading>
           <Paragraph>{description}</Paragraph>
           <div><Chip>+ {points}</Chip></div>
-          <form onSubmit={this.onSubmit}>
-            <TextField
-              hintText="XXXXX"
-              value={this.state.code}
-              onChange={this.onChangeCode}/>
-          </form>
+          {completed &&
+            <Paragraph>
+              You have completed this quest.<br/>
+              <CheckIcon size={24} color="#50E3C2"/>
+            </Paragraph>
+          }
+          {!completed &&
+            <form onSubmit={this.onSubmit}>
+              <TextField
+                hintText="XXXXX"
+                value={this.state.code}
+                onChange={this.onChangeCode}/>
+              <SubmitInput/>
+            </form>
+          }
         </Center>
       );
     }

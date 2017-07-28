@@ -4,6 +4,7 @@ import React from 'react';
 import {Page, PageBody, Center, Heading, Paragraph, TextField, NavBar} from './ui';
 import {withRouter} from 'react-router';
 import {post} from './lib/api';
+import SubmitInput from './submit-input';
 
 class CodePage extends React.PureComponent {
   constructor(props) {
@@ -27,6 +28,7 @@ class CodePage extends React.PureComponent {
                   hintText="XXXXX"
                   value={this.state.value}
                   onChange={this.onCodeChange}/>
+                <SubmitInput/>
               </fieldset>
             </form>
           </Center>
