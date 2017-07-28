@@ -57,7 +57,8 @@ class CodePage extends React.PureComponent {
             method="POST">
             <fieldset>
               <TextField
-                hintText="XXXXX"
+                centered
+                hintText="Enter wild code"
                 value={this.state.value.toUpperCase()}
                 onChange={this.onCodeChange}/>
               <SubmitInput/>

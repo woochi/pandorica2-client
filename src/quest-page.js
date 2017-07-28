@@ -69,11 +69,14 @@ class QuestPage extends React.PureComponent {
               onSubmit={this.onSubmit}
               action={`/quests/${this.props.match.params.questId}`}
               method="POST">
-              <TextField
-                hintText="XXXXX"
-                value={this.state.code.toUpperCase()}
-                onChange={this.onChangeCode}/>
-              <SubmitInput/>
+              <fieldset>
+                <TextField
+                  centered
+                  hintText="Enter quest code"
+                  value={this.state.code.toUpperCase()}
+                  onChange={this.onChangeCode}/>
+                <SubmitInput/>
+              </fieldset>
             </form>
           }
         </Center>

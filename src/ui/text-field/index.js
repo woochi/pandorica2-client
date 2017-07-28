@@ -14,8 +14,25 @@ const styles = {
   }
 };
 
-export const TextField = (props) => (
-  <MaterialTextField
-    {...styles}
-    {...props}/>
-);
+const centeredStyles = {
+  ...styles,
+  textAlign: 'center',
+  hintStyle: {
+    ...styles.hintStyle,
+    left: 0,
+    right: 0,
+    textAlign: 'center'
+  },
+  inputStyle: {
+    textAlign: 'center'
+  }
+}
+
+export const TextField = ({centered, ...props}) => {
+  const styles = centered ? centeredStyles : styles;
+  return (
+    <MaterialTextField
+      {...styles}
+      {...props}/>
+  );
+};
