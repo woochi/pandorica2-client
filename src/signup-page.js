@@ -6,6 +6,7 @@ import {Page, PageBody, PageFooter, NavBar, Button, TextField, Paragraph, Headin
 import {compose, mapProps} from 'recompose';
 import {refetch, post} from './lib/api';
 import css from './signup-page.css';
+import Snackbar from 'material-ui/Snackbar';
 
 class Faction extends React.PureComponent {
   render() {
@@ -35,7 +36,8 @@ class SignupPage extends React.PureComponent {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: false
     };
   }
 
@@ -63,7 +65,8 @@ class SignupPage extends React.PureComponent {
                   fullWidth
                   floatingLabelFixed
                   value={email}
-                  onChange={this.onChangeEmail}/>
+                  onChange={this.onChangeEmail}
+                  type="email"/>
                 <TextField
                   floatingLabelText="Password"
                   type="password"
@@ -86,6 +89,11 @@ class SignupPage extends React.PureComponent {
           <PageFooter>
             Already have an account? <Link to="/login">Log in</Link>
           </PageFooter>
+          <Snackbar
+            open={this.state.error !== false}
+            message={this.state.error}
+            autoHideDuration={2000}
+            onRequestClose={this.onErrorClose}/>
         </Page>
       );
     } else {
@@ -123,7 +131,17 @@ class SignupPage extends React.PureComponent {
     event.preventDefault();
     signUp(email, password, faction).then(() => {
       this.props.history.replace('/quests');
-    });
+    }).catch(response => {
+      response.json().then(({errors = []}) => {
+        const messages = errors.full_messages || errors;
+        const display = messages ? messages.join() : 'Unknown error';
+        this.setState({error: display});
+      });
+    });;
+  }
+
+  onErrorClose = () => {
+    this.setState({error: false});
   }
 }
 

@@ -3,13 +3,15 @@ import {authenticate, isAuthenticated} from './lib/auth';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {Page, PageBody, PageFooter, TextField, Button, Heading} from './ui';
+import Snackbar from 'material-ui/Snackbar';
 
 class LoginPage extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: false
     };
   }
 
@@ -59,6 +61,11 @@ class LoginPage extends React.PureComponent {
         <PageFooter>
           Don't have an account? <Link to="/signup">Sign up</Link>
         </PageFooter>
+        <Snackbar
+          open={this.state.error !== false}
+          message={this.state.error}
+          autoHideDuration={2000}
+          onRequestClose={this.onErrorClose}/>
       </Page>
     );
   }
@@ -72,10 +79,19 @@ class LoginPage extends React.PureComponent {
   }
 
   onSubmit = (event) => {
+    const {email, password} = this.state;
     event.preventDefault();
-    authenticate().then(() => {
+    authenticate(email, password).then(() => {
       this.props.history.push('/quests');
+    }).catch(response => {
+      response.json().then(({errors}) => {
+        this.setState({error: errors ? errors.join() : 'Unknown error'});
+      });
     });
+  }
+
+  onErrorClose = () => {
+    this.setState({error: false});
   }
 }
 

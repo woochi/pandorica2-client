@@ -33,7 +33,7 @@ function saveAuthData(response) {
   return response;
 }
 
-export function authenticate(email = 'mikko@example.com', password = 'password') {
+export function authenticate(email, password) {
   return post('/auth/sign_in', {email, password}).then(saveAuthData);
 }
 

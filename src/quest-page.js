@@ -10,14 +10,13 @@ import {
   NavBar,
   Chip,
   Center,
-  TextField
+  TextField,
+  Counter
 } from './ui';
 import {refetch, post} from './lib/api';
 import {compose, mapProps} from 'recompose';
 import {withRouter} from 'react-router';
-import {Motion, spring} from 'react-motion';
 import CheckIcon from 'react-icons/lib/md/check';
-import css from './quest-page.css';
 import SubmitInput from './submit-input';
 
 class QuestPage extends React.PureComponent {
@@ -49,12 +48,7 @@ class QuestPage extends React.PureComponent {
         <Center>
           <Heading>Quest Completed!</Heading>
           <Paragraph>You have been an aid to the kingdom's cause.</Paragraph>
-          <Motion
-            defaultStyle={{points: 0}}
-            style={{points: spring(points, {stiffness: 40, damping: 30})}}
-            onRest={this.onCounterComplete}>
-            {value => <div className={css.counter}>{Math.ceil(value.points)}</div>}
-          </Motion>
+          <Counter points={points}/>
         </Center>
       );
     } else {
