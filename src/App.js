@@ -16,36 +16,39 @@ import SignupPage from './signup-page';
 import LoginPage from './login-page';
 import {requiresAuthentication} from './lib/auth';
 import HomePage from './home-page';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import CodePage from './code-page';
 
-class CodeInsertPage extends React.PureComponent {
-  render() {
-    return (
-      <div>Insert code</div>
-    );
-  }
-}
+const muiTheme = getMuiTheme({
+  ...darkBaseTheme,
+  fontFamily: `'TT Norms', sans-serif`
+});
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className={styles.app}>
-          <Route exact path="/" component={HomePage}/>
-          <Route exact path="/login" component={LoginPage}/>
-          <Route exact path="/signup" component={SignupPage}/>
-          <Route
-            exact
-            path="/quests"
-            component={requiresAuthentication(QuestListPage)}/>
-          <Route
-            path="/quests/:questId"
-            component={requiresAuthentication(QuestPage)}/>
-          <Route
-            exact
-            path="/codes"
-            component={requiresAuthentication(CodeInsertPage)}/>
-        </div>
-      </Router>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <Router>
+          <div className={styles.app}>
+            <Route exact path="/" component={HomePage}/>
+            <Route exact path="/login" component={LoginPage}/>
+            <Route exact path="/signup" component={SignupPage}/>
+            <Route
+              exact
+              path="/quests"
+              component={requiresAuthentication(QuestListPage)}/>
+            <Route
+              path="/quests/:questId"
+              component={requiresAuthentication(QuestPage)}/>
+            <Route
+              exact
+              path="/codes"
+              component={requiresAuthentication(CodePage)}/>
+          </div>
+        </Router>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,28 +1,83 @@
 import React, { Component } from 'react';
 import {
   QuestCard,
-  Grid
+  Grid,
+  Heading,
+  Paragraph,
+  Label,
+  Page,
+  PageBody,
+  NavBar,
+  Chip,
+  Center,
+  TextField
 } from './ui';
-import {refetch} from './lib/api';
+import {refetch, post} from './lib/api';
 import {compose, mapProps} from 'recompose';
+import {withRouter} from 'react-router';
+import {Motion, spring} from 'react-motion';
 
 class QuestPage extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      code: '',
+      success: false
+    };
+  }
+
   render() {
+    return (
+      <Page>
+        <NavBar onClose={this.navigateToQuestList}/>
+        <PageBody>
+          {this.renderContent()}
+        </PageBody>
+      </Page>
+    );
+  }
+
+  renderContent = () => {
     const {quest, submitting, loading} = this.props;
     const {name, description, points, code} = quest;
 
-    return (
-      <div>
-        <div>{name}</div>
-        <div>{description}</div>
-        <div>{points}</div>
-        <div>{code}</div>
-        <form onSubmit={this.onSubmit}>
-          <input type="text" ref={this.updateInput}/>
-        </form>
-        {submitting && 'SUBMITTING'}
-      </div>
-    );
+    if (this.state.success) {
+      return (
+        <Center>
+          <Motion
+            defaultStyle={{points: 0}}
+            style={{points: spring(points, {stiffness: 40, damping: 30})}}
+            onRest={this.onCounterComplete}>
+            {value => <div>{Math.ceil(value.points)}</div>}
+          </Motion>
+        </Center>
+      );
+    } else {
+      return (
+        <Center>
+          <Label>Testing Label</Label>
+          <Heading>{name}</Heading>
+          <Paragraph>{description}</Paragraph>
+          <div><Chip>+ {points}</Chip></div>
+          <form onSubmit={this.onSubmit}>
+            <TextField
+              hintText="XXXXX"
+              value={this.state.code}
+              onChange={this.onChangeCode}/>
+          </form>
+          {code}
+          {submitting && 'SUBMITTING'}
+        </Center>
+      );
+    }
+  }
+
+  onChangeCode = (event, code) => {
+    this.setState({code});
+  }
+
+  navigateToQuestList = () => {
+    this.props.history.push('/quests');
   }
 
   updateInput = (element) => {
@@ -31,13 +86,17 @@ class QuestPage extends React.PureComponent {
 
   onSubmit = (event) => {
     event.preventDefault();
-    const {value} = this.input;
-
-    this.props.onSubmitCode(value);
+    post(
+      `/quests/${this.props.match.params.questId}`,
+      {code: this.state.code}
+    ).then(() => {
+      this.setState({success: true})
+    });
   }
 }
 
 export default compose(
+  withRouter,
   refetch(({match}) => ({
     questFetch: {
       url: `/quests/${match.params.questId}`,
@@ -47,19 +106,13 @@ export default compose(
         "uid":          "mikko@example.com",
         "expiry":       "1502358378"
       }
-    },
-    submitCode: (code) => ({
-      codeSubmit: {
-        url: `/quests/${match.params.questId}`,
-        method: 'POST',
-        body: {code}
-      }
-    })
+    }
   })),
-  mapProps(({questFetch, submitCode, codeSubmit = {}}) => ({
+  mapProps(({questFetch, submitCode, codeSubmit = {}, ...otherProps}) => ({
     quest: questFetch.value || [],
     loading: questFetch.pending,
     submitting: codeSubmit.pending,
-    onSubmitCode: submitCode
+    onSubmitCode: submitCode,
+    ...otherProps
   }))
 )(QuestPage);

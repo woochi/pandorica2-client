@@ -1,6 +1,7 @@
 .questCard {
   position: relative;
   max-height: 480px;
+  text-align: center;
 }
 
 .labels {

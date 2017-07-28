@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import {
   QuestCard,
-  Grid
+  Grid,
+  Page,
+  PageBody,
+  NavBar
 } from './ui';
 import {refetch} from './lib/api';
 import {compose, mapProps} from 'recompose';
+import {withRouter} from 'react-router';
 
 const items = Array(10).fill(null).map((_, i) => ({
   id: i,
@@ -17,10 +21,19 @@ class QuestList extends React.PureComponent {
     const {quests} = this.props;
 
     return (
-      <Grid>
-        {quests.map(this.renderQuestCard)}
-      </Grid>
+      <Page>
+        <NavBar title="Quests Board" onScan={this.navigateToCodes}/>
+        <PageBody>
+          <Grid>
+            {quests.map(this.renderQuestCard)}
+          </Grid>
+        </PageBody>
+      </Page>
     );
+  }
+
+  navigateToCodes = () => {
+    this.props.history.push('/codes');
   }
 
   renderQuestCard(quest, i) {
@@ -31,13 +44,15 @@ class QuestList extends React.PureComponent {
 }
 
 export default compose(
+  withRouter,
   refetch(props => ({
     questsFetch: {
       url: '/quests'
     }
   })),
-  mapProps(({questsFetch}) => ({
+  mapProps(({questsFetch, ...otherProps}) => ({
     quests: questsFetch.value || [],
-    loading: questsFetch.pending
+    loading: questsFetch.pending,
+    ...otherProps
   }))
 )(QuestList);

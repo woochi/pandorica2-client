@@ -1,4 +1,6 @@
-import {post} from '../api';
+import React from 'react';
+import {post, destroy} from '../api';
+import {withRouter} from 'react-router';
 
 const storageKey = 'ropeconAuth';
 let storedAuthData = JSON.parse(window.localStorage.getItem(storageKey)) || null;
@@ -18,25 +20,53 @@ export function isAuthenticated() {
   return storedAuthData !== null;
 }
 
-export function authenticate(email = 'mikko@example.com', password = 'password') {
-  return post('/auth/sign_in', {email, password}).then(response => {
-    const {headers} = response;
-    const authData = {};
+function saveAuthData(response) {
+  const {headers} = response;
+  const authData = {};
 
-    authHeaderFields.forEach(field =>
-      authData[field] = headers.get(field)
-    );
-    storedAuthData = authData;
-    window.localStorage.setItem(storageKey, JSON.stringify(authData));
+  authHeaderFields.forEach(field =>
+    authData[field] = headers.get(field)
+  );
+  storedAuthData = authData;
+  window.localStorage.setItem(storageKey, JSON.stringify(authData));
+
+  return response;
+}
+
+export function authenticate(email = 'mikko@example.com', password = 'password') {
+  return post('/auth/sign_in', {email, password}).then(saveAuthData);
+}
+
+export function logOut() {
+  return destroy('/auth/sign_out').then(response => {
+    storedAuthData = null;
+    window.localStorage.removeItem(storageKey);
 
     return response;
   });
 }
 
+export function signUp(email, password, faction) {
+  return post('/auth', {
+    email,
+    password,
+    password_confirmation: password,
+    faction: faction.id
+  }).then(saveAuthData);
+}
+
 export function requiresAuthentication(BaseComponent) {
-  if (!isAuthenticated()) {
-    window.history.replaceState({}, '', '/login');
+  class AuthenticatedComponent extends React.PureComponent {
+    componentWillMount() {
+      if (!isAuthenticated()) {
+        this.props.history.replace('/login');
+      }
+    }
+
+    render() {
+      return <BaseComponent {...this.props}/>;
+    }
   }
 
-  return BaseComponent;
+  return withRouter(AuthenticatedComponent);
 }

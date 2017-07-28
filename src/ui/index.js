@@ -22,3 +22,5 @@ export {
   PageFooter,
   NavBar
 } from './page';
+export {TextField} from './text-field';
+export {Center} from './center';

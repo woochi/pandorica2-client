@@ -16,7 +16,7 @@ class Heading extends React.PureComponent {
   };
 
   render() {
-    const {component, className} = componentMappings[this.props.size];
+    const {component, className} = componentMappings[this.props.size - 1];
 
     return (
       <component {...this.props} className={className}/>

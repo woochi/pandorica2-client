@@ -8,12 +8,14 @@
 .body {
   position: relative;
   flex: 1 1 auto;
-  padding: 16px;
   overflow-y: auto;
 }
 
 .navBar {
   flex: 0 0 auto;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 10px 10px #4a4e7b;
 }
 
 .navBarItem {
@@ -22,9 +24,23 @@
 
 .navBarTitle {
   composes: navBarItem;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+}
+
+.navBarAction {
+  composes: navBarItem;
+}
+
+.navBarRightActions {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .footer {
   flex: 0 0 auto;
   padding: 16px;
+  text-align: center;
 }

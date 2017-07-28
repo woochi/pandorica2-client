@@ -3,8 +3,15 @@ import {Link} from 'react-router-dom'
 import css from './home-page.css';
 import {Button, Page, PageFooter, PageBody, NavBar, Center} from './ui';
 import Logo from './images/logo.png';
+import {authenticate, isAuthenticated} from './lib/auth';
 
 class HomePage extends React.PureComponent {
+  componentDidMount() {
+    if (isAuthenticated()) {
+      this.props.history.replace('/quests');
+    }
+  }
+
   render() {
     return (
       <Page>
