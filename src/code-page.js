@@ -49,7 +49,7 @@ class CodePage extends React.PureComponent {
         <Center>
           <Heading>Found a wild code?</Heading>
           <Paragraph>
-            Insert wil codes you found in Messukeskus and in different events here to gain points for your kingdom.
+            Insert wild codes you found in Messukeskus and in different events here to gain points for your kingdom.
           </Paragraph>
           <form
             onSubmit={this.onSubmit}
@@ -57,7 +57,6 @@ class CodePage extends React.PureComponent {
             method="POST">
             <fieldset>
               <TextField
-                autoFocus
                 hintText="XXXXX"
                 value={this.state.value.toUpperCase()}
                 onChange={this.onCodeChange}/>
@@ -79,8 +78,9 @@ class CodePage extends React.PureComponent {
     post('/codes', {value: this.state.value}).then(() => {
       this.setState({success: true});
     }).catch((response) => {
-      response.json().then(({errors}) => {
-        this.setState({error: errors ? errors.join() : 'Unknown error'});
+      response.json().then(({errors = []}) => {
+        window.alert(errors);
+        this.setState({error: errors.length ? errors.join() : 'Unknown error'});
       });
     });
   }

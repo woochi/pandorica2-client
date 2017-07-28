@@ -70,7 +70,6 @@ class QuestPage extends React.PureComponent {
               action={`/quests/${this.props.match.params.questId}`}
               method="POST">
               <TextField
-                autoFocus
                 hintText="XXXXX"
                 value={this.state.code.toUpperCase()}
                 onChange={this.onChangeCode}/>
