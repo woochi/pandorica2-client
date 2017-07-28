@@ -24,7 +24,7 @@ class QuestCard extends React.PureComponent {
   }
 
   render() {
-    const {id, name, points} = this.props;
+    const {id, name, points, description} = this.props;
 
     return (
       <div className={css.questCard}>
@@ -33,7 +33,7 @@ class QuestCard extends React.PureComponent {
             <Label>Quest</Label>
             <Heading>{name}</Heading>
             <Paragraph>
-              Join the royal guardsmen in escorting the princess to her evening banquet. The princess was last seen near the Messukeskus lobby area.
+              {description}
             </Paragraph>
             <div className={css.labels}>
               <Chip>+ {points}</Chip>
