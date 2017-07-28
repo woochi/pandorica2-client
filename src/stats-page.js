@@ -7,6 +7,7 @@ import {refetch} from './lib/api';
 import {compose, mapProps} from 'recompose';
 import Crown from './images/crown.png';
 import {withRouter} from 'react-router';
+import sortBy from 'lodash/sortBy';
 
 class FactionStats extends React.PureComponent {
   static defaultProps = {
@@ -57,7 +58,7 @@ class StatsPage extends React.PureComponent {
     if (loading) {
       return null;
     } else {
-      const sortedFactions = factions.sort((a, b) => a.points < b.points);
+      const sortedFactions = sortBy(factions, (faction) => -faction.points);
 
       return (
         <div className={css.factionsContainer}>
