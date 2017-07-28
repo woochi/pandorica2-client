@@ -1,7 +1,7 @@
 import React from 'react';
 import MaterialTextField from 'material-ui/TextField';
 
-const styles = {
+const defaultStyles = {
   color: '#FFF',
   underlineFocusStyle: {
     borderColor: '#50E3C2'
@@ -15,10 +15,10 @@ const styles = {
 };
 
 const centeredStyles = {
-  ...styles,
+  ...defaultStyles,
   textAlign: 'center',
   hintStyle: {
-    ...styles.hintStyle,
+    ...defaultStyles.hintStyle,
     left: 0,
     right: 0,
     textAlign: 'center'
@@ -29,7 +29,8 @@ const centeredStyles = {
 }
 
 export const TextField = ({centered, ...props}) => {
-  const styles = centered ? centeredStyles : styles;
+  const styles = centered ? centeredStyles : defaultStyles;
+
   return (
     <MaterialTextField
       {...styles}
