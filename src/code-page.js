@@ -57,8 +57,9 @@ class CodePage extends React.PureComponent {
             method="POST">
             <fieldset>
               <TextField
+                autoFocus
                 hintText="XXXXX"
-                value={this.state.value}
+                value={this.state.value.toUpperCase()}
                 onChange={this.onCodeChange}/>
               <SubmitInput/>
             </fieldset>
@@ -73,6 +74,7 @@ class CodePage extends React.PureComponent {
   }
 
   onSubmit = (event) => {
+    window.alert('SUBMIT' + this.state.value);
     event.preventDefault();
     post('/codes', {value: this.state.value}).then(() => {
       this.setState({success: true});

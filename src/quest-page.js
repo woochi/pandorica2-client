@@ -54,7 +54,7 @@ class QuestPage extends React.PureComponent {
     } else {
       return (
         <Center>
-          <Label>Testing Label</Label>
+          <Label>Quest</Label>
           <Heading>{name}</Heading>
           <Paragraph>{description}</Paragraph>
           <div><Chip>+ {points}</Chip></div>
@@ -70,8 +70,9 @@ class QuestPage extends React.PureComponent {
               action={`/quests/${this.props.match.params.questId}`}
               method="POST">
               <TextField
+                autoFocus
                 hintText="XXXXX"
-                value={this.state.code}
+                value={this.state.code.toUpperCase()}
                 onChange={this.onChangeCode}/>
               <SubmitInput/>
             </form>

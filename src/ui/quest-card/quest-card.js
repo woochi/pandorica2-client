@@ -30,7 +30,7 @@ class QuestCard extends React.PureComponent {
       <div className={css.questCard}>
         <Card>
           <CardBody>
-            <Label>Testing Label</Label>
+            <Label>Quest</Label>
             <Heading>{name}</Heading>
             <Paragraph>
               Join the royal guardsmen in escorting the princess to her evening banquet. The princess was last seen near the Messukeskus lobby area.
