@@ -35,16 +35,6 @@ class FactionStats extends React.PureComponent {
   }
 }
 
-function alphabeticSort(a, b) {
-  if (a < b) {
-    return -1
-  } else if (a > b) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
-
 class StatsPage extends React.PureComponent {
   static defaultProps = {
     factions: []
