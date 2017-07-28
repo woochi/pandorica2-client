@@ -20,6 +20,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import CodePage from './code-page';
+import StatsPage from './stats-page';
 
 const muiTheme = getMuiTheme({
   ...darkBaseTheme,
@@ -46,6 +47,10 @@ class App extends Component {
               exact
               path="/codes"
               component={requiresAuthentication(CodePage)}/>
+            <Route
+              exact
+              path="/stats"
+              component={StatsPage}/>
           </div>
         </Router>
       </MuiThemeProvider>

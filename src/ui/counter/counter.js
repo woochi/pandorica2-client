@@ -3,7 +3,7 @@
 import React from 'react';
 import {Motion, spring} from 'react-motion';
 import css from './counter.css';
-import {Label} from '../label';
+import PointsDisplay from './points-display';
 
 class Counter extends React.PureComponent {
   static defaultProps = {
@@ -14,15 +14,12 @@ class Counter extends React.PureComponent {
     const {points} = this.props;
 
     return (
-      <div>
-        <Motion
-          defaultStyle={{points: 0}}
-          style={{points: spring(points, {stiffness: 40, damping: 30})}}
-          onRest={this.onCounterComplete}>
-          {value => <div className={css.counter}>{Math.ceil(value.points)}</div>}
-        </Motion>
-        <Label>Points</Label>
-      </div>
+      <Motion
+        defaultStyle={{points: 0}}
+        style={{points: spring(points, {stiffness: 40, damping: 30})}}
+        onRest={this.onCounterComplete}>
+        {value => <PointsDisplay points={Math.ceil(value.points)}/>}
+      </Motion>
     );
   }
 }

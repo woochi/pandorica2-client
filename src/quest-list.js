@@ -22,7 +22,10 @@ class QuestList extends React.PureComponent {
 
     return (
       <Page>
-        <NavBar title="Quests Board" onScan={this.navigateToCodes}/>
+        <NavBar
+          title="Quests Board"
+          onScan={this.navigateToCodes}
+          onStats={this.navigateToStatsPage}/>
         <PageBody>
           <Grid>
             {quests.map(this.renderQuestCard)}
@@ -30,6 +33,10 @@ class QuestList extends React.PureComponent {
         </PageBody>
       </Page>
     );
+  }
+
+  navigateToStatsPage = () => {
+    this.props.history.push('/stats');
   }
 
   navigateToCodes = () => {
@@ -47,7 +54,8 @@ export default compose(
   withRouter,
   refetch(props => ({
     questsFetch: {
-      url: '/quests'
+      url: '/quests',
+      refreshInterval: 60 * 1000
     }
   })),
   mapProps(({questsFetch, ...otherProps}) => ({

@@ -24,4 +24,4 @@ export {
 } from './page';
 export {TextField} from './text-field';
 export {Center} from './center';
-export {Counter} from './counter';
+export {Counter, PointsDisplay} from './counter';

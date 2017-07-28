@@ -1,0 +1,56 @@
+.factionList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 16px;
+}
+
+.factionItem {
+  position: relative;
+  flex: 1 0 auto;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.factionItem:last-child {
+  border-bottom: none;
+}
+
+.leaderIcon {
+  display: inline-block;
+  width: 24px;
+  margin: 16px;
+}
+
+@media only screen and (min-width : 768px) {
+  .factionsContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .factionList {
+    flex-direction: row;
+    width: 90%;
+  }
+
+  .factionItem {
+    flex: 1 0 20%;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: none;
+  }
+
+  .factionItem:last-child {
+    border-right: none;
+  }
+
+  .leaderIcon {
+    position: absolute;
+    top: -36px;
+    width: 36px;
+    left: 50%;
+    margin: 0 0 0 -18px;
+  }
+}

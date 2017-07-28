@@ -1,4 +1,5 @@
 .heading {
+  display: block;
   color: white;
   font-weight: 500;
 }
