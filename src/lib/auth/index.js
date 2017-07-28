@@ -51,7 +51,7 @@ export function signUp(email, password, faction) {
     email,
     password,
     password_confirmation: password,
-    faction: faction.id
+    faction_id: faction.id
   }).then(saveAuthData);
 }
 
