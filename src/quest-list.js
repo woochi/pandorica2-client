@@ -28,6 +28,7 @@ class QuestList extends React.PureComponent {
       menuOpen: false
     };
   }
+
   render() {
     const {quests} = this.props;
 

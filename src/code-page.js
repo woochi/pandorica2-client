@@ -6,6 +6,7 @@ import {withRouter} from 'react-router';
 import {post} from './lib/api';
 import SubmitInput from './submit-input';
 import Snackbar from 'material-ui/Snackbar';
+import qs from 'qs';
 
 class CodePage extends React.PureComponent {
   constructor(props) {
@@ -13,8 +14,16 @@ class CodePage extends React.PureComponent {
     this.state = {
       value: '',
       error: false,
-      success: false
+      success: false,
+      points: 150
     };
+  }
+
+  componentDidMount() {
+    const params = qs.parse(this.props.location.search.replace('?', ''));
+    this.setState({value: params.value}, () => {
+      this.onSubmit();
+    });
   }
 
   render() {
@@ -41,7 +50,7 @@ class CodePage extends React.PureComponent {
           <Paragraph>
             You have been an aid to the kingdom's cause.
           </Paragraph>
-          <Counter points={150}/>
+          <Counter points={this.state.points}/>
         </Center>
       );
     } else {
@@ -74,9 +83,17 @@ class CodePage extends React.PureComponent {
   }
 
   onSubmit = (event) => {
-    event.preventDefault();
-    post('/codes', {value: this.state.value}).then(() => {
-      this.setState({success: true});
+    if (event) {
+      event.preventDefault();
+    }
+
+    post('/codes', {value: this.state.value}).then(response => {
+      response.json().then(({points}) => {
+        this.setState({
+          success: true,
+          points
+        });
+      });
     }).catch((response) => {
       response.json().then(({errors = []}) => {
         this.setState({error: errors.length ? errors.join() : 'Unknown error'});
