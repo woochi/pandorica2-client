@@ -1,5 +1,13 @@
+.textGreen {
+  color: #50E3C2;
+}
+
 .counter {
+  composes: textGreen;
   font-size: 40px;
   line-height: 48px;
-  color: #50E3C2;
+}
+
+.contributedPoints {
+  composes: textGreen;
 }

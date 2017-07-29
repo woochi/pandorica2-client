@@ -16,7 +16,7 @@ class FactionStats extends React.PureComponent {
 
   render() {
     const {faction, isLeader} = this.props;
-    const {name, points} = faction;
+    const {name, points, contributed_points} = faction;
 
     return (
       <div>
@@ -29,7 +29,7 @@ class FactionStats extends React.PureComponent {
           <div className={css.factionName}>
             <Heading>{name}</Heading>
           </div>
-          <PointsDisplay points={points}/>
+          <PointsDisplay points={points} contributions={contributed_points}/>
         </Center>
       </div>
     );
